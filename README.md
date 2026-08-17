@@ -229,8 +229,6 @@ The architecture supports scaling to 500,000+ records by:
 - **Message Queues** - Decoupling components
 - **Database Sharding** - PostgreSQL partitions
 
-See `architecture.pdf` for detailed scaling strategy.
-
 ---
 
 ## Contributing
