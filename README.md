@@ -4,7 +4,7 @@ A production-grade data pipeline that collects, processes, and structures AI eco
 
 ---
 
-## 📌 What This Does
+## What This Does
 
 This pipeline scrapes and processes data from:
 
@@ -25,52 +25,52 @@ The extracted data is structured into a consistent JSON schema and exported as C
 │                    PHASE 1: ACQUISITION                         │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐  │
-│  │  Papers   │  │ Startups  │  │ Products  │  │ News/Jobs │  │
-│  │  Crawler  │  │  Crawler  │  │  Crawler  │  │  Crawler  │  │
-│  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘  │
-│        └──────────────┼──────────────┼──────────────┘        │
-│                       ▼                                        │
-│              ┌──────────────────┐                             │
-│              │   Async Workers  │                             │
-│              │   (Concurrent)   │                             │
-│              └────────┬─────────┘                             │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐     │
+│  │  Papers   │  │ Startups  │  │ Products  │  │ News/Jobs │     │
+│  │  Crawler  │  │  Crawler  │  │  Crawler  │  │  Crawler  │     │
+│  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘     │
+│        └──────────────┼──────────────┼──────────────┘           │
+│                       ▼                                         │
+│              ┌──────────────────┐                               │
+│              │   Async Workers  │                               │
+│              │   (Concurrent)   │                               │
+│              └────────┬─────────┘                               │
 └───────────────────────┼─────────────────────────────────────────┘
                         ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    PHASE 2: PROCESSING                          │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌────────────────────────────────────────────────────┐        │
-│  │           LLM Orchestrator (Fallback Chain)        │        │
-│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐       │        │
-│  │  │  Gemini  │→ │   Groq   │→ │ DeepSeek │       │        │
-│  │  └──────────┘  └──────────┘  └──────────┘       │        │
-│  │         (Retry + Rate Limit + Chunking)           │        │
-│  └────────────────────────────────────────────────────┘        │
-│                        ▼                                       │
-│              ┌──────────────────┐                             │
-│              │  Entity Resolver │                             │
-│              │ (Fuzzy Matching) │                             │
-│              └────────┬─────────┘                             │
+│  ┌────────────────────────────────────────────────────┐         │
+│  │           LLM Orchestrator (Fallback Chain)        │         │
+│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐          │         │
+│  │  │  Gemini  │→ │   Groq   │→ │ DeepSeek │          │         │
+│  │  └──────────┘  └──────────┘  └──────────┘          │         │
+│  │         (Retry + Rate Limit + Chunking)            │         │
+│  └────────────────────────────────────────────────────┘         │
+│                        ▼                                        │
+│              ┌──────────────────┐                               │
+│              │  Entity Resolver │                               │
+│              │ (Fuzzy Matching) │                               │
+│              └────────┬─────────┘                               │
 └───────────────────────┼─────────────────────────────────────────┘
                         ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    PHASE 3: STORAGE                             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐      │
-│  │ startups │  │ products │  │  papers  │  │  news/   │      │
-│  │   .csv   │  │   .csv   │  │   .csv   │  │ jobs.csv │      │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘      │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐         │
+│  │ startups │  │ products │  │  papers  │  │  news/   │         │
+│  │   .csv   │  │   .csv   │  │   .csv   │  │ jobs.csv │         │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘         │
 │                                                                 │
-│  Plus: entity_mapping.csv, summary.csv                         │
+│  Plus: entity_mapping.csv, summary.csv                          │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -167,7 +167,7 @@ Features:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ai_engineer_demo/
@@ -205,7 +205,7 @@ ai_engineer_demo/
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Python 3.9+** - Core language
 - **asyncio + aiohttp** - Async HTTP requests
@@ -219,29 +219,7 @@ ai_engineer_demo/
 
 ---
 
-## ⚠️ Common Issues
-
-### API Keys Not Working
-```
-Error: 403 Forbidden
-```
-Check your `.env` file has valid API keys and you have credits/balance.
-
-### Timeouts
-```
-Error: Timeout 30000ms exceeded
-```
-Increase `REQUEST_TIMEOUT` in `.env` or add more delay between requests.
-
-### Rate Limiting
-```
-Error: 429 Too Many Requests
-```
-The pipeline handles this automatically with exponential backoff. Wait a few minutes and retry.
-
----
-
-## 📈 Scaling
+## Scaling
 
 The architecture supports scaling to 500,000+ records by:
 
@@ -255,19 +233,13 @@ See `architecture.pdf` for detailed scaling strategy.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This is a demo task submission. For questions or feedback, please open an issue.
 
 ---
 
-## 📝 License
-
-This project is for evaluation purposes only.
-
----
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - arXiv for the research paper API
 - Y Combinator for startup data
