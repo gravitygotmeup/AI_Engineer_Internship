@@ -1,0 +1,57 @@
+# .gitignore
+# ===========
+
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Output data
+data/output/
+*.csv
+*.json
+*.xlsx
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Playwright
+playwright-report/
+test-results/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+*.egg
